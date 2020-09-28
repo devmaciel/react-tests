@@ -1,48 +1,26 @@
-import React, { Component } from 'react';
+//rsc - react stateless component
+//compartilhamento de estado com connect
 
-class Sidebar extends Component {
+import React from 'react';
+import { connect } from 'react-redux';
 
-    state = {
-        modules: [
-            {
-                id: 1,
-                title: "Iniciando com React",
-                lessons: [
-                    { id: 1, title: "Primeira aula" },
-                    { id: 2, title: "Segunda aula" }
-                ],
-            },
-            {
-                id: 2,
-                title: "Aprendendo Redux",
-                lessons: [
-                    { id: 3, title: "Terceira aula"},
-                    { id: 4, title: "Quarta aula"}
-                ]
-            }
-        ]
-    }
-
-
-    render() {
-
-        const { modules } = this.state;
-
-        return (
-            <aside>
-                { modules.map(module => (
-                    <div key={module.id}>
-                        <strong>{module.title}</strong>
-                        <ul>
-                            {module.lessons.map(lesson => (
-                                <li key={lesson.id}>{lesson.title}</li>
-                            ))}
-                        </ul>
-                    </div>
-                ))}
+const Sidebar = ({ modules }) => {
+    return (
+        <div>
+           <aside>
+            { modules.map(module => (
+                <div key={module.id}>
+                    <strong>{module.title}</strong>
+                    <ul>
+                        {module.lessons.map(lesson => (
+                            <li key={lesson.id}>{lesson.title}</li>
+                        ))}
+                    </ul>
+                </div>
+            ))}
             </aside>
-        );
-    }
-}
+        </div>
+    );
+};
 
-export default Sidebar;
+export default connect(state => ({ modules: state }))(Sidebar);

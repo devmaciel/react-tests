@@ -1,10 +1,19 @@
 import React from 'react';
+import { Provider } from 'react-redux';
+
 import Sidebar from "./componenents/Sidebar";
+import Video from "./componenents/Video";
+
+import store from './store';
 
 function App() {
+  
   return (
     <div className="App">
-      <Sidebar />
+      <Provider store={store}>
+        <Video />
+        <Sidebar />
+      </Provider>
     </div>
   );
 }
