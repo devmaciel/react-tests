@@ -8,7 +8,7 @@ function App() {
   useEffect(() => { 
     const watchId = navigator.geolocation.watchPosition();
 
-    //desmonta, willamount
+    //desmonta, willmount
     return () => navigator.geolocation.clearWatch(watchId);
   }, []);
 
